@@ -22,7 +22,7 @@ jobs:
       run: dotnet resotre ToDoListAPI.sln
 
     - name: Build
-      run: dotnet build ./ToDoListAPI.sln --configuration Release --no-restore
+      run: dotnet build ToDoListAPI.sln --configuration Release --no-restore
 
     - name: Puhlish
-      run: dotnet publish ./ToDoListAPI.sln --cofiguration Release --no-build
+      run: dotnet publish ToDoListAPI.sln --cofiguration Release --no-build
