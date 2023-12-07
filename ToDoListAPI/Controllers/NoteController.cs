@@ -29,6 +29,13 @@ namespace ToDoListAPI.Controllers
             return Ok(notes);
         }
 
+        [HttpGet("/Test")]
+        [EnableCors]
+        public async Task<IActionResult> Test()
+        {
+            return Ok(DateTime.Now);
+        }
+
         [HttpGet("{title}")]
         [EnableCors]
         public async Task<IActionResult> GetAllNotesByTitle(string title)
