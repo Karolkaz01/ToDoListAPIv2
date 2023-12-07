@@ -33,7 +33,12 @@ namespace ToDoListAPI.Controllers
         [EnableCors]
         public async Task<IActionResult> GetAllNotesByTitle(string title)
         {
-            var notes = await _noteService.GetAllNotesByTitle(title);
+            IEnumerable<Note> notes;
+            if (string.IsNullOrEmpty(title))
+                notes = await _noteService.GetAllNotes();
+            else
+                notes = await _noteService.GetAllNotesByTitle(title);
+
             if (notes == null) { return NotFound(); }
 
             return Ok(notes);
