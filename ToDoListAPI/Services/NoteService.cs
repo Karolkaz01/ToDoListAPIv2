@@ -20,6 +20,12 @@ namespace ToDoListAPI.Services
             return await _dbContext.Notes.ToListAsync();
         }
 
+        public async Task<IEnumerable<Note>> GetAllNotesByTitle(string title)
+        {
+            var allNotes = await _dbContext.Notes.ToListAsync();
+            return allNotes.Where(n => n.Title.Contains(title));
+        }
+
         public async Task DeleteNote(int id)
         {
             var entity = await GetNote(id);

@@ -29,6 +29,16 @@ namespace ToDoListAPI.Controllers
             return Ok(notes);
         }
 
+        [HttpGet("{title}")]
+        [EnableCors]
+        public async Task<IActionResult> GetAllNotesByTitle(string title)
+        {
+            var notes = await _noteService.GetAllNotesByTitle(title);
+            if (notes == null) { return NotFound(); }
+
+            return Ok(notes);
+        }
+
         [HttpDelete]
         [EnableCors]
         public async Task<IActionResult> DeleteNote(int id)
