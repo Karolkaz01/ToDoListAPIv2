@@ -15,7 +15,7 @@ namespace ToDoListAPI.Services
             _logger = logger;
         }
 
-        public async Task<IEnumerable<NoteDto>> GetAllNotes()
+        public async Task<IEnumerable<Note>> GetAllNotes()
         {
             return await _dbContext.Notes.ToListAsync();
         }
@@ -28,24 +28,24 @@ namespace ToDoListAPI.Services
             _dbContext.SaveChanges();
         }
 
-        public async Task<NoteDto> PutNote(int id, string newNote)
+        public async Task<Note> PutNote(int id, string newNote)
         {
             var entity = await GetNote(id);
 
-            entity.Note = newNote;
+            entity.NoteValue = newNote;
             _dbContext.Notes.Update(entity);
             _dbContext.SaveChanges();
             return await GetNote(id);
         }
 
-        public async Task<NoteDto> PostNote(string note)
+        public async Task<Note> PostNote(NoteDto note)
         {
-            var response = await _dbContext.Notes.AddAsync(new NoteDto() { Note = note });
+            var response = await _dbContext.Notes.AddAsync(new Note() { NoteValue = note.NoteValue, Title = note.Title });
             _dbContext.SaveChanges();
             return await GetNote(response.Entity.Id);
         }
 
-        public async Task<NoteDto> GetNote(int id)
+        public async Task<Note> GetNote(int id)
         {
             var note = await _dbContext.Notes.FirstOrDefaultAsync(n => n.Id == id);
 

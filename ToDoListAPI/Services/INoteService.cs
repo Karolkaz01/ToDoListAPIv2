@@ -5,8 +5,8 @@ namespace ToDoListAPI.Services
     public interface INoteService
     {
         Task DeleteNote(int id);
-        Task<IEnumerable<NoteDto>> GetAllNotes();
-        Task<NoteDto> PostNote(string note);
-        Task<NoteDto> PutNote(int id, string newNote);
+        Task<IEnumerable<Note>> GetAllNotes();
+        Task<Note> PostNote(NoteDto note);
+        Task<Note> PutNote(int id, string newNote);
     }
 }

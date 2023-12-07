@@ -49,7 +49,7 @@ namespace ToDoListAPI.Controllers
 
         [HttpPost]
         [EnableCors]
-        public async Task<IActionResult> PostNote([FromBody] string note)
+        public async Task<IActionResult> PostNote([FromBody] NoteDto note)
         {
             var notes = await _noteService.PostNote(note);
             if (notes == null) { return NotFound(); }

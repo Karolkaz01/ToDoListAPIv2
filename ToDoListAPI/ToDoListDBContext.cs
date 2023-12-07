@@ -12,20 +12,23 @@ public partial class ToDoListDBContext : DbContext
     {
     }
 
-    public virtual DbSet<NoteDto> Notes { get; set; }
+    public virtual DbSet<Note> Notes { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<NoteDto>(entity =>
+        modelBuilder.Entity<Note>(entity =>
         {
             entity.ToTable("Note");
 
             entity.Property(e => e.CreateDate)
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime");
-            entity.Property(e => e.Note)
+            entity.Property(e => e.NoteValue)
                 .IsUnicode(false)
                 .HasColumnName("Note");
+            entity.Property(e => e.Title)
+                .IsUnicode(false)
+                .HasColumnName("Title");
         });
 
         OnModelCreatingPartial(modelBuilder);
