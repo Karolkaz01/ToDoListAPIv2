@@ -56,7 +56,7 @@ namespace ToDoListAPI.Services
 
         public async Task<Note> PostNote(NoteDto note)
         {
-            var newID = _notes.Select(x => x.Id).Max() + 1;
+            var newID = _notes.Select(x => x.Id).DefaultIfEmpty(0).Max() + 1;
             var newNote = new Note() { NoteValue = note.NoteValue, Title = note.Title , Id = newID , CreateDate = DateTime.Now };
             _notes.Add(newNote);
             return newNote;
