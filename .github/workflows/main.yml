@@ -19,7 +19,7 @@ jobs:
         dotnet-version: '8.0.x'
 
     - name: Restore
-      run: dotnet resotre ./ToDoListAPI.sln
+      run: dotnet resotre ToDoListAPI.sln
 
     - name: Build
       run: dotnet build ./ToDoListAPI.sln --configuration Release --no-restore
