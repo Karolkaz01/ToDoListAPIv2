@@ -21,7 +21,7 @@
                 return;
             }
 
-            var apiKey = _configuration.GetSection("Authentication").GetValue<string>("ApiKey");
+            var apiKey = Environment.GetEnvironmentVariable("ToDoListAPIKey");
             if (!apiKey.Equals(contextApiKey))
             {
                 context.Response.StatusCode = 401;

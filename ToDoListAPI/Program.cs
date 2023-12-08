@@ -39,7 +39,7 @@ builder.Services.AddSwaggerGen(c =>
 });
 
 builder.Services.AddDbContext<ToDoListDBContext>(
-    o => o.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"))
+    o => o.UseNpgsql(Environment.GetEnvironmentVariable("ToDoListDbConectionString"))
     );
 
 var app = builder.Build();
