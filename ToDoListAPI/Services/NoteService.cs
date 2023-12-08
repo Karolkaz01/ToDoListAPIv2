@@ -60,7 +60,7 @@ namespace ToDoListAPI.Services
             //var newNote = new Note() { NoteValue = note.NoteValue, Title = note.Title , Id = newID , CreateDate = DateTime.Now };
             //_notes.Add(newNote);
             //return newNote;
-            var response = await _dbContext.Notes.AddAsync(new Note() { NoteValue = note.NoteValue, Title = note.Title });
+            var response = await _dbContext.Notes.AddAsync(new Note() { NoteValue = note.NoteValue, Title = note.Title , CreateDate = DateTime.Now});
             _dbContext.SaveChanges();
             return await GetNote(response.Entity.Id);
         }

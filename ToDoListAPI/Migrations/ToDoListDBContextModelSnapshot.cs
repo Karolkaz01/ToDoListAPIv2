@@ -31,7 +31,7 @@ namespace ToDoListAPI.Migrations
 
                     b.Property<DateTime>("CreateDate")
                         .HasColumnType("timestamp with time zone")
-                        .HasDefaultValueSql("CURRENT_TIMESTAMP")
+                        .HasDefaultValueSql("now()")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("NoteValue")
