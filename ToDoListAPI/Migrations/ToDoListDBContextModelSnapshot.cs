@@ -30,7 +30,9 @@ namespace ToDoListAPI.Migrations
                     NpgsqlPropertyBuilderExtensions.UseSerialColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("CreateDate")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp with time zone")
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("NoteValue")
                         .IsRequired()
