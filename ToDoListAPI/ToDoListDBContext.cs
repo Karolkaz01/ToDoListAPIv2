@@ -9,30 +9,13 @@ public partial class ToDoListDBContext : DbContext
 {
     public ToDoListDBContext(DbContextOptions<ToDoListDBContext> options)
         : base(options)
-    {
+    { 
     }
 
     public virtual DbSet<Note> Notes { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<Note>(entity =>
-        {
-            entity.ToTable("Note");
-
-            entity.Property(e => e.CreateDate)
-                .HasDefaultValueSql("(getdate())")
-                .HasColumnType("datetime");
-            entity.Property(e => e.NoteValue)
-                .IsUnicode(false)
-                .HasColumnName("Note");
-            entity.Property(e => e.Title)
-                .IsUnicode(false)
-                .HasColumnName("Title");
-        });
-
-        OnModelCreatingPartial(modelBuilder);
+        modelBuilder.UseSerialColumns();
     }
-
-    partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 }

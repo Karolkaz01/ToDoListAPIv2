@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using ToDoListAPI.Authentication;
 using ToDoListAPI.Models;
@@ -37,7 +38,9 @@ builder.Services.AddSwaggerGen(c =>
     c.AddSecurityRequirement(requirement);
 });
 
-builder.Services.AddSqlServer<ToDoListDBContext>(builder.Configuration.GetConnectionString("DefaultConnection"));
+builder.Services.AddDbContext<ToDoListDBContext>(
+    o => o.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"))
+    );
 
 var app = builder.Build();
 
